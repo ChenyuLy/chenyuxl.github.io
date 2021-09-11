@@ -261,6 +261,208 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://chenyusblog.site/2021/09/11/%E6%90%AD%E5%BB%BA%E5%92%8Cgithub%E4%B8%8A%E9%83%A8%E7%BD%B2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/11.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ChenYu's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2021/09/11/%E6%90%AD%E5%BB%BA%E5%92%8Cgithub%E4%B8%8A%E9%83%A8%E7%BD%B2/" itemprop="url">搭建和github上部署</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-09-11T16:25:49+08:00">
+                2021-09-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/" itemprop="url" rel="index">
+                    <span itemprop="name">搭建博客</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2021/09/11/%E6%90%AD%E5%BB%BA%E5%92%8Cgithub%E4%B8%8A%E9%83%A8%E7%BD%B2/" class="leancloud_visitors" data-flag-title="搭建和github上部署">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="博客本地文件的创建"><a href="#博客本地文件的创建" class="headerlink" title="博客本地文件的创建"></a>博客本地文件的创建</h1><ol>
+<li><p>在本地磁盘中创建 MyBlog文件夹</p>
+</li>
+<li><p>使用git bash 在此文件夹中打开</p>
+</li>
+<li><p>使用指令 </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo init //初始化本地博客</span><br></pre></td></tr></table></figure></li>
+<li><p>使用指令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo install //安装依赖包</span><br></pre></td></tr></table></figure></li>
+<li><p>使用指令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo g //生成网页 没有网页时生成hellow world</span><br></pre></td></tr></table></figure></li>
+<li><p>使用指令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo s //本地运行服务器</span><br></pre></td></tr></table></figure>
+
+<p>访问网页 <a target="_blank" rel="noopener" href="http://localhost:4000/">http://localhost:4000/</a> 就可以看到初步的博客框架</p>
+</li>
+<li><p>回到bash 使用ctrl + c 终止服务器 本地博客就绪</p>
+</li>
+<li><p>使用指令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexok new post &lt;文章名字&gt; </span><br></pre></td></tr></table></figure>
+
+<p>可以发布自己的第一篇博客开始服务以后就可以在本地网页上看到</p>
+</li>
+<li><p>发布后会在本地文件source 中的 post里生成 markdown也就是md文件 使用typora可以对他进行编辑 这也是你的文章主体</p>
+</li>
+<li><p>每次要发布文章时 使用指令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo clean //去除缓存</span><br><span class="line">hexo g //生成网页</span><br></pre></td></tr></table></figure>
+
+<p>发布文章 待开启服务后可以查看</p>
+</li>
+</ol>
+<h1 id="部署hexo到GitHub"><a href="#部署hexo到GitHub" class="headerlink" title="部署hexo到GitHub"></a>部署hexo到GitHub</h1><ol>
+<li><p>复制仓库地址<br>在GitHub上打开自己的repository 找到绿色的code 复制他的http</p>
+</li>
+<li><p>修改博客配置文件<br>在博客主文件中的_config.yml 使用notepad 打开 ctrl f 找到Deployment填写</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># Deployment</span><br><span class="line">## Docs: https://hexo.io/docs/one-command-deployment</span><br><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repository: https://github.com/ChenyuLy/chenyuxl.github.io.git</span><br><span class="line">  branch: master</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li><p>部署<br>回到bash 输入</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save </span><br></pre></td></tr></table></figure>
+
+<p>安装部署的依赖项接着</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo d //部署到对应的地址</span><br></pre></td></tr></table></figure>
+
+<p>显示deploy done 时部署完成</p>
+<p>个人部署的时候因为网络问题一直连接不上多次使用该指令即可</p>
+</li>
+<li><p>打开网页验证</p>
+<p>找到自己的仓库（repository）点击 setting 往下找到 page里面会有网站的地址打开即可查看成果</p>
+</li>
+</ol>
+<p>参考博客：<a target="_blank" rel="noopener" href="https://ryanluoxu.github.io/">https://ryanluoxu.github.io/</a> ；</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://chenyusblog.site/2021/09/11/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E7%9A%84%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -809,7 +1011,7 @@
                 <!--<a href="/archives/%7C%7C%20archive"> -->
 	<a href="/archives/"
               
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -831,7 +1033,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
