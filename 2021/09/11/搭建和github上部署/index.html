@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="githubpage git hexo," />
+  <meta name="keywords" content="-githubpage -git -hexo," />
 
 
 
@@ -87,9 +87,9 @@
 <meta property="og:description" content="博客本地文件的创建 在本地磁盘中创建 MyBlog文件夹  使用git bash 在此文件夹中打开  使用指令  1hexo init &#x2F;&#x2F;初始化本地博客 使用指令 1hexo install &#x2F;&#x2F;安装依赖包 使用指令 1hexo g &#x2F;&#x2F;生成网页 没有网页时生成hellow world 使用指令 1hexo s &#x2F;&#x2F;本地运行服务器  访问网页 http:&#x2F;&#x2F;localhost:4000&#x2F; 就可以">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-09-11T08:25:49.000Z">
-<meta property="article:modified_time" content="2021-09-11T09:40:21.610Z">
+<meta property="article:modified_time" content="2021-09-11T14:15:05.235Z">
 <meta property="article:author" content="wxl &amp; chenyu">
-<meta property="article:tag" content="githubpage git hexo">
+<meta property="article:tag" content="-githubpage -git -hexo">
 <meta name="twitter:card" content="summary">
 
 
@@ -328,6 +328,16 @@
 
           
             
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2021/09/11/%E6%90%AD%E5%BB%BA%E5%92%8Cgithub%E4%B8%8A%E9%83%A8%E7%BD%B2/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2021/09/11/%E6%90%AD%E5%BB%BA%E5%92%8Cgithub%E4%B8%8A%E9%83%A8%E7%BD%B2/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
@@ -419,7 +429,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/githubpage-git-hexo/" rel="tag"># githubpage git hexo</a>
+            <a href="/tags/githubpage-git-hexo/" rel="tag"># -githubpage -git -hexo</a>
           
         </div>
       
@@ -470,6 +480,9 @@
           
 
   
+    <div class="comments" id="comments">
+    </div>
+
 
 
 
@@ -768,6 +781,28 @@
 
 
 
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'a9zuiDfBH26hP3UOgb7auNQ7-gzGzoHsz',
+        appKey: 'BnnJTa9zuiDfBH26hP3UOgb7auNQ7-gzGzoHsz2w3MDmHJ5ly4I2zpVXg',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
 
 
 

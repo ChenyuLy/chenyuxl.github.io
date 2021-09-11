@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="博客 hexo GithubPages," />
+  <meta name="keywords" content="-博客 -hexo -GithubPages," />
 
 
 
@@ -87,9 +87,9 @@
 <meta property="og:description" content="使用hexo和 GitHub搭建一个博客做这个博客的时候也遇到很多的问题。经过个人的总结之后得到了以下的思路  安装git node,js  和hexo框架 部署 使用next主题 对博客修正 博客各种功能的实现  准备的工具Github Pages  Node.js  Git  Hexo Notepad++ typora Github PagesGithub Pages是github提供的博客服">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-09-11T03:51:14.000Z">
-<meta property="article:modified_time" content="2021-09-11T09:39:59.800Z">
+<meta property="article:modified_time" content="2021-09-11T14:14:52.610Z">
 <meta property="article:author" content="wxl &amp; chenyu">
-<meta property="article:tag" content="博客 hexo GithubPages">
+<meta property="article:tag" content="-博客 -hexo -GithubPages">
 <meta name="twitter:card" content="summary">
 
 
@@ -328,6 +328,16 @@
 
           
             
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2021/09/11/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E7%9A%84%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2021/09/11/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E7%9A%84%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
@@ -422,7 +432,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/%E5%8D%9A%E5%AE%A2-hexo-GithubPages/" rel="tag"># 博客 hexo GithubPages</a>
+            <a href="/tags/%E5%8D%9A%E5%AE%A2-hexo-GithubPages/" rel="tag"># -博客 -hexo -GithubPages</a>
           
         </div>
       
@@ -477,6 +487,9 @@
           
 
   
+    <div class="comments" id="comments">
+    </div>
+
 
 
 
@@ -775,6 +788,28 @@
 
 
 
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'a9zuiDfBH26hP3UOgb7auNQ7-gzGzoHsz',
+        appKey: 'BnnJTa9zuiDfBH26hP3UOgb7auNQ7-gzGzoHsz2w3MDmHJ5ly4I2zpVXg',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
 
 
 
