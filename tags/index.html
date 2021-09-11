@@ -79,10 +79,12 @@
 
 
 
+<meta name="description" content="ordinary person ,ordinary blog">
 <meta property="og:type" content="website">
 <meta property="og:title" content="tags">
 <meta property="og:url" content="https://chenyusblog.site/tags/index.html">
 <meta property="og:site_name" content="ChenYu&#39;s Blog">
+<meta property="og:description" content="ordinary person ,ordinary blog">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-09-10T14:40:21.000Z">
 <meta property="article:modified_time" content="2021-09-10T14:40:50.106Z">
@@ -158,7 +160,7 @@
       </a>
     </div>
       
-        <p class="site-subtitle">blablabla</p>
+        <p class="site-subtitle">Thank you for turning whats worst part of my life into best.</p>
       
   </div>
 
@@ -292,6 +294,13 @@
           
 
   
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
+
+  
 
 
 
@@ -374,12 +383,6 @@
                     <a href="mailto:chenzeyuyuze@outlook.com" target="_blank" title="E-Mail">
                       
                         <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
-                  </span>
-                
-                  <span class="links-of-author-item">
-                    <a href="https://weibo.com/6216194430/profile?rightmod=1&wvr=6&mod=personinfo" target="_blank" title="weibo">
-                      
-                        <i class="fa fa-fw fa-globe"></i>weibo</a>
                   </span>
                 
             </div>
@@ -567,6 +570,43 @@
 
 
 
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitmint({
+            id: window.location.pathname, 
+            owner: 'ChenyuLy',
+            repo: 'gitment-comments',
+            
+            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: '4b1dd2059931f83d5c8ac6530c021aeb0e671820',
+            
+                client_id: '494f57ea45dd7e325a5f'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      renderGitment();
+      
+      </script>
+    
 
 
 
