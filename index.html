@@ -261,6 +261,211 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://chenyusblog.site/2021/09/11/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E7%9A%84%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/11.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ChenYu's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2021/09/11/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E7%9A%84%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C/" itemprop="url">搭建博客的准备工作</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-09-11T11:51:14+08:00">
+                2021-09-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/" itemprop="url" rel="index">
+                    <span itemprop="name">搭建博客</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2021/09/11/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E7%9A%84%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C/" class="leancloud_visitors" data-flag-title="搭建博客的准备工作">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="使用hexo和-GitHub搭建一个博客"><a href="#使用hexo和-GitHub搭建一个博客" class="headerlink" title="使用hexo和 GitHub搭建一个博客"></a>使用hexo和 GitHub搭建一个博客</h1><p>做这个博客的时候也遇到很多的问题。经过个人的总结之后得到了以下的思路</p>
+<ul>
+<li>安装git node,js  和hexo框架</li>
+<li>部署</li>
+<li>使用next主题 对博客修正</li>
+<li>博客各种功能的实现</li>
+</ul>
+<h4 id="准备的工具"><a href="#准备的工具" class="headerlink" title="准备的工具"></a>准备的工具</h4><p>Github Pages  Node.js  Git  Hexo Notepad++ typora</p>
+<h5 id="Github-Pages"><a href="#Github-Pages" class="headerlink" title="Github Pages"></a>Github Pages</h5><p>Github Pages是github提供的博客服务，只要创建一个特定格式的repository,Github Pages 会吧里面放置的信息生成一个网页</p>
+<ol>
+<li>首先注册一个Github的账号 然后创建一个以 .github.io结尾的repository  （ 例如Repository name：chenyuxl.github.io）勾选ADD a README file</li>
+<li>这个时候打开 chenyuxl.github.io 网页 就可以看到 README file 里面的内容</li>
+</ol>
+<h4 id="Node-js"><a href="#Node-js" class="headerlink" title="Node.js"></a>Node.js</h4><p>让JavaScript 运行在服务端的开发平台，它让JavaScript成为与PHP、Python、Perl、Ruby等服务端语言平起平坐的脚本语言。</p>
+<ul>
+<li>前往 <a target="_blank" rel="noopener" href="https://nodejs.org/en/">https://nodejs.org/en/</a></li>
+<li>点击 8.9.1 LTS 下载</li>
+<li>安装</li>
+<li>打开 Command Prompt， 输入 <code>node -v</code></li>
+<li>得到：v8.9.1 成功 </li>
+</ul>
+<h4 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h4><p>分布式版本控制系统</p>
+<ul>
+<li>前往 <a target="_blank" rel="noopener" href="https://git-scm.com/">https://git-scm.com/</a></li>
+<li>点击 Downloads</li>
+<li>点击 Windows</li>
+<li>一般情况，下载会自动开始。如果没有，就点击 click here to download manually</li>
+<li>安装</li>
+<li>打开 Command Prompt， 输入 <code>git --version</code></li>
+<li>得到：git version 2.15.0.windows.1</li>
+</ul>
+<h4 id="Hexo"><a href="#Hexo" class="headerlink" title="Hexo"></a>Hexo</h4><p>Hexo是一款基于Node.js的静态博客框架，依赖少易于安装使用，可以方便的生成静态网页托管在GitHub和Coding上，是搭建博客的首选框架。大家可以进入hexo官网进行详细查看，因为Hexo的创建者是台湾人，对中文的支持很友好，可以选择中文进行查看。</p>
+<ul>
+<li><p>打开 Command Prompt</p>
+</li>
+<li><p>输入 <code>npm install -g hexo-cli</code></p>
+</li>
+<li><p>回车开始安装</p>
+</li>
+<li><p>输入 <code>hexo -v</code></p>
+</li>
+<li><p>得到 hexo-cli: 1.0.4 等一串数据</p>
+<p>安装成功</p>
+</li>
+</ul>
+<h4 id="Notepad"><a href="#Notepad" class="headerlink" title="Notepad++"></a>Notepad++</h4><p>方便的编辑软件，软件作者辱华，现在官网都不好找了，供选着使用</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://notepad-plus-plus.org/">https://notepad-plus-plus.org/</a></li>
+</ul>
+<h4 id="typora"><a href="#typora" class="headerlink" title="typora"></a>typora</h4><p>室友推荐的十分好用的makedwon编辑软件，后续会更新使用大全</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.typora.io/">https://www.typora.io/</a></li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://chenyusblog.site/2021/09/10/Post/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -604,7 +809,7 @@
                 <!--<a href="/archives/%7C%7C%20archive"> -->
 	<a href="/archives/"
               
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -615,7 +820,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
@@ -626,7 +831,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
