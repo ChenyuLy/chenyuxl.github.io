@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="机器学习," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="统计学习法这本书相比周志华的机器学习来说看起来要精炼简介不少，很时候现在抓时间学习，后面讲的算法之类有很多都是相似的，就不再之后的机器学习中详细展开。 第一篇 监督学习第一章 统计学习以及监督学习概论1.1 统计学习 统计学习的特点  对象：数据  目的：预测与分析选着什么样的模型如何学习模型  方法：监督学习，无监督学习，强化学习(reinforcement learning)等 步骤：  得到">
+<meta property="og:type" content="article">
+<meta property="og:title" content="统计学习方法-李航">
+<meta property="og:url" content="https://chenyusblog.site/2021/09/13/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95-%E6%9D%8E%E8%88%AA/index.html">
+<meta property="og:site_name" content="ChenYu&#39;s Blog">
+<meta property="og:description" content="统计学习法这本书相比周志华的机器学习来说看起来要精炼简介不少，很时候现在抓时间学习，后面讲的算法之类有很多都是相似的，就不再之后的机器学习中详细展开。 第一篇 监督学习第一章 统计学习以及监督学习概论1.1 统计学习 统计学习的特点  对象：数据  目的：预测与分析选着什么样的模型如何学习模型  方法：监督学习，无监督学习，强化学习(reinforcement learning)等 步骤：  得到">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-09-13T03:07:50.000Z">
+<meta property="article:modified_time" content="2021-09-15T14:51:19.873Z">
+<meta property="article:author" content="wxl &amp; chenyu">
+<meta property="article:tag" content="机器学习">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://chenyusblog.site/2021/09/13/统计学习方法-李航/"/>
+
+
+
+
+
+  <title>统计学习方法-李航 | ChenYu's Blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">ChenYu's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Thank you for turning whats worst part of my life into best.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://chenyusblog.site/2021/09/13/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95-%E6%9D%8E%E8%88%AA/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/11.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ChenYu's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">统计学习方法-李航</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-09-13T11:07:50+08:00">
+                2021-09-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/" itemprop="url" rel="index">
+                    <span itemprop="name">统计学习方法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2021/09/13/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95-%E6%9D%8E%E8%88%AA/" class="leancloud_visitors" data-flag-title="统计学习方法-李航">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>统计学习法这本书相比周志华的机器学习来说看起来要精炼简介不少，很时候现在抓时间学习，后面讲的算法之类有很多都是相似的，就不再之后的机器学习中详细展开。</p>
+<h1 id="第一篇-监督学习"><a href="#第一篇-监督学习" class="headerlink" title="第一篇 监督学习"></a>第一篇 监督学习</h1><h2 id="第一章-统计学习以及监督学习概论"><a href="#第一章-统计学习以及监督学习概论" class="headerlink" title="第一章 统计学习以及监督学习概论"></a>第一章 统计学习以及监督学习概论</h2><h3 id="1-1-统计学习"><a href="#1-1-统计学习" class="headerlink" title="1.1 统计学习"></a>1.1 统计学习</h3><ol>
+<li><p>统计学习的特点</p>
+</li>
+<li><p>对象：数据</p>
+</li>
+<li><p>目的：预测与分析选着什么样的模型如何学习模型</p>
+</li>
+<li><p>方法：监督学习，无监督学习，强化学习(reinforcement learning)等</p>
+<p>步骤：</p>
+<ol>
+<li>得到有限的数据集和</li>
+<li>确定包含所有可能的假设空间，即学习模型的集合</li>
+<li>确定模型选着的准则，即学习的策略</li>
+<li>求解最优模型的算法，即学习的算法</li>
+<li>通过学习方法选着最有的模型</li>
+<li>利用最优的模型对新数据进行分析或者预测</li>
+</ol>
+</li>
+<li><p>研究：方法，理论，应用</p>
+</li>
+<li><p>重要性</p>
+</li>
+</ol>
+<h3 id="1-2统计学习的分类"><a href="#1-2统计学习的分类" class="headerlink" title="1.2统计学习的分类"></a>1.2统计学习的分类</h3><ol>
+<li>监督学习:从标注数据中学习预测模型的机器学习问题  <strong>本质是学习输入到输出的映射的统计规律</strong><ol>
+<li>输出空间，输入空间，特征空间</li>
+<li>联合概率分布</li>
+<li>假设空间 意味着学习的范围的确定</li>
+<li>问题的形式化</li>
+</ol>
+</li>
+</ol>
+<p>2.无监督学习::从无标注数据中学习预测模型的机器学习问题 本质是学习数据中的统计规律或潜在解构</p>
+<p><strong>待续。。。</strong></p>
+<h2 id="第二章-感知机"><a href="#第二章-感知机" class="headerlink" title="第二章 感知机"></a>第二章 感知机</h2><h3 id="2-1-感知机模型"><a href="#2-1-感知机模型" class="headerlink" title="2.1 感知机模型"></a>2.1 感知机模型</h3><p>感知的定义 :假设输入空间是 $\chi\subseteq R^n$, 输出空间是$Y ={+1,-1}$ 。输入$x\in\chi$ 表示实例的特征向量，对应于输出空间的点；输出$y\in Y$表示实例的类别。由输入空间到输出空间的以下函数<br>$$<br>f(x)= sign(w\cdot x +b)<br>$$<br>称为感知机。其中，w和b为感知机的模型参数，$w \in R^n$ 叫做权值(weight) 或权值向量(vector) ,$b\in R$叫做偏置(bias)，$w\cdot x$表示w和x的内积。sign是符号函数<br>$$<br>sign(x) =\left{<br>\begin{aligned}<br>+1, x \geq 0\<br>-1, x &lt; 0<br>\end{aligned}<br>\right.<br>`<br>$$<br>感知机是一种线性分类模型,<strong>属于判别模型</strong>。感知机模型的假设空间是定义在输入空间的所有线性分类模型 即函数合集${f|f(x) = w \cdot x +b}$</p>
+<p>感知机的集合解释为：线性方程<br>$$<br>0 = sign(w\cdot x +b)<br>$$<br>对应输入空间的一个超平面S，其中w为法向量，b为超平面的截距。这个超平面把特征空间也就是输入空间分为两个部分，位于连个部分的点被分为正负两类。也称分离超平面</p>
+<h3 id="2-2感知机学习策略"><a href="#2-2感知机学习策略" class="headerlink" title="2.2感知机学习策略"></a>2.2感知机学习策略</h3><h4 id="2-2-1-数据集的线性可分性的定义"><a href="#2-2-1-数据集的线性可分性的定义" class="headerlink" title="2.2.1 数据集的线性可分性的定义"></a>2.2.1 数据集的线性可分性的定义</h4><p>给定一个数据集<br>$$<br>T ={(x_1,y_1),…,(x_n,y_n)}<br>$$<br>其中$x_i\in \chi $ ,$y_i\in Y = {+1,-1},i={1,2,…,N}$，如果存在某个超平面能偶是的数据集的正实例点和负实例点完全正确地划分到超平面的两侧，称之为数据集的线性可分，否则反之。</p>
+<h4 id="2-2-2-感知机学习策略"><a href="#2-2-2-感知机学习策略" class="headerlink" title="2.2.2 感知机学习策略"></a>2.2.2 感知机学习策略</h4><p>假设数据集是线性可分的感知机的目的就是求得一个分离超平面。为了确定w,b的感知机参数，需要指定一个学习策略，即经验（损失）函数并将损失的值最小化</p>
+<p>损失函数的一个选择是无分类点的总数，但是这样不容易优化。于是我们选着另外一种，所有点到超平面的距离：<br>$$<br>\frac{1}{||w||} |w\cdot x_0 +b|<br>$$<br>这里$||w||$ 是w  的$L_2$范数，对于误分类点$(x_i,y_i)$来说<br>$$<br>-y_i (w\cdot x_0 +b)&gt;0<br>$$<br>假设超平面S的误分类点)集为 M ,那么所有误分类点$(x_i,y_i)$的到平面的距离和为：<br>$$<br>-\frac{1}{||w||} \sum <em>{x_i\in M}y_i(w\cdot x_i +b)<br>$$<br>不考虑$\frac{1}{||w||} $便得到了损失函数即：<br>$$<br>L(w,b) = - \sum</em>{x_i/in M}y_i(w\cdot x +b)<br>$$<br>这个损失函数也就是经验函数。</p>
+<h3 id="2-3-感知机学习算法"><a href="#2-3-感知机学习算法" class="headerlink" title="2.3 感知机学习算法"></a>2.3 感知机学习算法</h3><h4 id="2-3-1-感知机学习算法的最原始形式"><a href="#2-3-1-感知机学习算法的最原始形式" class="headerlink" title="2.3.1 感知机学习算法的最原始形式"></a>2.3.1 感知机学习算法的最原始形式</h4><p>感知机学习算法是对损失函数的最小化的优化算法。求参数$w,b$使得损失函数最小。感知机算法是误分类驱动的，具体采用梯度下降算法。<br>$$<br>minL(w,b) = - \sum_{x_i/in M}y_i(w\cdot x +b)<br>$$<br>首先选一个超平面$w_0,b_0$,然后用梯度下降算法不断极小化。</p>
+<p>假设M点集合固定，那么损失函数L(w,b)的梯度由<br>$$<br>\Delta_w L(w,b) = -\sum_{x_i\in M}y_ix_i<br>$$</p>
+<p>$$<br>\Delta_b L(w,b) = -\sum_{x_i\in M}y_i<br>$$</p>
+<p>给出</p>
+<p>随机选你个误分类点对wb进行更新：<br>$$<br>w \leftarrow w+\eta y_ix_i<br>$$</p>
+<p>$$<br>b \leftarrow b + \eta y_i<br>$$</p>
+<p>其中$\eta$是步长(0&lt;,&lt;=1)，在统计学习称为学习率这样迭代可以使损失函数不断变小知道为0；<br>$$<br>输入：训练集T ={(x_1,y_1),…,(x_n,y_n)}，其中x\in\chi ,y_i\in Y = {+1,-1},i={1,2,…,N}\学习率\eta（0&lt;\eta\leq1）<br>\输出：w,b;感知机模型f(x) = sign(w\cdot x +b)\<br>(1)选取初值w_0,b_0\<br>(2)在训练中选取（x_i,y_i)\<br>(3)如果y_i(w\cdot x_i +b) \leq0\w \leftarrow w+\eta y_ix_i\b \leftarrow b + \eta y_i\<br>（4）转至(2)，直到训练中没有误分类的点<br>$$</p>
+<h4 id="2-3-2-算法的收敛性"><a href="#2-3-2-算法的收敛性" class="headerlink" title="2.3.2 算法的收敛性"></a>2.3.2 算法的收敛性</h4><p>为了方便叙述，将偏置b并入权重向量W ，记作$\widehat{w} = (w^T,b)^T$,同样的也将输入向量加以扩充 ，加进常数1记作 $\widehat{x}={(x^T,1)^T}$ 。这样，$\widehat{x} \in R^n+1,\widehat{w} \in R^n+1$。显然，$\widehat{w} \cdot\widehat{x} = w\cdot x +b$。</p>
+<p>得到定理 <strong>Novikoff</strong>:</p>
+<p>$训练集T ={(x_1,y_1),…,(x_n,y_n)}是线性可分的，其中x\in\chi ,y_i\in Y = {+1,-1},i={1,2,…,N}$则</p>
+<ol>
+<li>存在满足条件的$||\widehat{w}<em>{opt}|| = 1$的超平面$\widehat{w}</em>{opt}\cdot \widehat{x}<em>i = w</em>{opt} \cdot x_i+b_{opt} = 0$将训练集完全正确的分开且存在$\gamma$&gt;0 对所有$i$ 有</li>
+</ol>
+<p>$$<br>y_i(\widehat{w}<em>{opt}\cdot \widehat{x}<em>i) = y_i(w</em>{opt} \cdot x_i +b</em>{opt})\geq \gamma<br>$$</p>
+<p>   2.令 $R =\max_{1\leq i\leq N} ||\widehat{x}||$ 则感知机算法在训练数据集上的误分类次数k满足不等式：<br>$$<br>k\leq(\frac{R}{\gamma})^2<br>$$<br>证明：略</p>
+<p>即当数据集线性可分时候，感知机算法原始形式迭代是收敛的。其结果依赖于初始选择点位和后续误分类点的顺序。这也是第七章要讲述的线性支持向量机的想法。</p>
+<p>当数据集不收敛是，迭代结果会发生震荡。</p>
+<h4 id="2-3-3-感知机学习算法的对偶形式"><a href="#2-3-3-感知机学习算法的对偶形式" class="headerlink" title="2.3.3 感知机学习算法的对偶形式"></a>2.3.3 感知机学习算法的对偶形式</h4><p>感知机的原始形式和队友形式与第七章中的支持向量机学习算法的原始形式和对偶形式相对应。</p>
+<p>对偶性形式的基本想法是，将w和b表示为实例$x_i$和标记$y_i$的线性组合的形式通过求解其系数而球的wb。不失一般性在,算法（14）中假设$w_0,b_0$=0 。通过<br>$$<br>w \leftarrow w+\eta y_ix_i\b \leftarrow b + \eta y_i\<br>$$<br>逐步修改w,b，设修改n次，则关于$(x_i,y_i)$的增量分别是$\alpha_i y_i x_i$ 和$\alpha_i y_i$ ,这里的$\alpha_i = n_i \eta$，$n_i$是点被误分类的次数，这样而来组后学习到的w,b可以分别表示为</p>
+<p>$$<br>w=\sum^N_{i=1}\alpha_i y_i x_i\<br>b= \sum_{i=1}^N\alpha_iy_i<br>$$<br> 当$\eta =1 $时，表示第i个实例点由于误分类而进行更新的次数。实例点阅读哦更新的次数越多，距离风力超平面越近，越难正确分类，这样的实例对学习结果影响最大。</p>
+<p><strong>算法2.2</strong>：感知机学习算法的对偶形式<br>$$<br>输入：训练集T ={(x_1,y_1),…,(x_n,y_n)}，其中x\in\chi ,y_i\in Y = {+1,-1},i={1,2,…,N}\学习率\eta（0&lt;\eta\leq1）<br>\输出：w,b;感知机模型f(x) = sign(\sum_{j=1}^N\alpha_jy_jx_j\cdot x+b),其中\alpha = (\alpha_1,\alpha_2,…,\alpha_N)^T\</p>
+<p>\(1)\alpha\leftarrow0,b\leftarrow 0;\<br>(2)在训练集中选取数据(x_i,y_i)\<br>(3)如果y_i(\sum_{j=1}^N \alpha_jy_jx_j\cdot x_i +b)\leq 0\<br>(4)转至（2）直到没有误分类数据<br>$$<br>对偶形式中训练实例仅仅以内积的形式出现。为了方便，可以预先将训练集中实例间的内积算出来并以矩阵的形式存储，这就是所谓的<strong>Gram</strong>矩阵<br>$$<br>G= [x_i \cdot x_j]_{N\times N}<br>$$</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag"># 机器学习</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/09/12/%E3%80%8A%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E3%80%8B%E8%A5%BF%E7%93%9C%E4%B9%A6%EF%BC%8C%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" rel="next" title="《机器学习》西瓜书，读书笔记">
+                <i class="fa fa-chevron-left"></i> 《机器学习》西瓜书，读书笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/09/13/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%E4%B8%8E%E6%9C%BA%E5%99%A8%E8%A7%86%E8%A7%89/" rel="prev" title="数字图像处理与机器视觉">
+                数字图像处理与机器视觉 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/11.jpg"
+                alt="" />
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <!--<a href="/archives/%7C%7C%20archive"> -->
+	<a href="/archives/"
+              
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:chenzeyuyuze@outlook.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E7%AF%87-%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0"><span class="nav-number">1.</span> <span class="nav-text">第一篇 监督学习</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E7%AB%A0-%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E4%BB%A5%E5%8F%8A%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E6%A6%82%E8%AE%BA"><span class="nav-number">1.1.</span> <span class="nav-text">第一章 统计学习以及监督学习概论</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.1 统计学习</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E7%9A%84%E5%88%86%E7%B1%BB"><span class="nav-number">1.1.2.</span> <span class="nav-text">1.2统计学习的分类</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E6%84%9F%E7%9F%A5%E6%9C%BA"><span class="nav-number">1.2.</span> <span class="nav-text">第二章 感知机</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-%E6%84%9F%E7%9F%A5%E6%9C%BA%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.2.1.</span> <span class="nav-text">2.1 感知机模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2%E6%84%9F%E7%9F%A5%E6%9C%BA%E5%AD%A6%E4%B9%A0%E7%AD%96%E7%95%A5"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.2感知机学习策略</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-1-%E6%95%B0%E6%8D%AE%E9%9B%86%E7%9A%84%E7%BA%BF%E6%80%A7%E5%8F%AF%E5%88%86%E6%80%A7%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">2.2.1 数据集的线性可分性的定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-2-%E6%84%9F%E7%9F%A5%E6%9C%BA%E5%AD%A6%E4%B9%A0%E7%AD%96%E7%95%A5"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">2.2.2 感知机学习策略</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-%E6%84%9F%E7%9F%A5%E6%9C%BA%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95"><span class="nav-number">1.2.3.</span> <span class="nav-text">2.3 感知机学习算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-1-%E6%84%9F%E7%9F%A5%E6%9C%BA%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95%E7%9A%84%E6%9C%80%E5%8E%9F%E5%A7%8B%E5%BD%A2%E5%BC%8F"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">2.3.1 感知机学习算法的最原始形式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-2-%E7%AE%97%E6%B3%95%E7%9A%84%E6%94%B6%E6%95%9B%E6%80%A7"><span class="nav-number">1.2.3.2.</span> <span class="nav-text">2.3.2 算法的收敛性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-3-%E6%84%9F%E7%9F%A5%E6%9C%BA%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95%E7%9A%84%E5%AF%B9%E5%81%B6%E5%BD%A2%E5%BC%8F"><span class="nav-number">1.2.3.3.</span> <span class="nav-text">2.3.3 感知机学习算法的对偶形式</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">wxl & chenyu</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("hk9WgJdrDP1eL7mt6ezesWBO-gzGzoHsz", "3JHlc1v5N8fIGnlR4QN6ozJ2");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

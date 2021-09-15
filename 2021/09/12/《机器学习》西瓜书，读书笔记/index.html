@@ -87,7 +87,7 @@
 <meta property="og:description" content="第一章 绪论基本术语数据集(data set )：记录的合集 示例，样本(instance,sample)：每条对事物或的对象的描述 属性，特征(sttribute,feature):反应事物在某方的表现或者性质的事项 属性值(attribute value):属性上的取值 属性空间(attribute space),样本空间(sample space ),输入空间:属性张成的空间 特征向量(fe">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-09-12T05:29:32.000Z">
-<meta property="article:modified_time" content="2021-09-12T15:42:14.717Z">
+<meta property="article:modified_time" content="2021-09-13T03:05:34.296Z">
 <meta property="article:author" content="wxl &amp; chenyu">
 <meta property="article:tag" content="西瓜书笔">
 <meta property="article:tag" content="机器学习">
@@ -414,7 +414,40 @@
 <p>回归任务常用 均方误差 作为性能度量</p>
 <p>给定样例集 $D = { {(x_1,y_1),(x_2,y_2),…,(x_m,y_m)}}$ 其中 $ y_i$ 是$ x_i$ 的真实标记<br>$$<br>E(f;D) = \frac{1}{m}\sum_{i=1}^m(f(x_i)-y_i)^2<br>$$</p>
 <h3 id="错误率与精度"><a href="#错误率与精度" class="headerlink" title="错误率与精度"></a>错误率与精度</h3><p>这是常用的两个性能度量，即适用于二分类任务，也适用于多分类任务。对于样例集$D$ 分类错误率和精度的定义为公式（1）（2）</p>
-<h3 id="查准率，查全率-与-F1"><a href="#查准率，查全率-与-F1" class="headerlink" title="查准率，查全率 与$F1$"></a>查准率，查全率 与$F1$</h3>
+<h3 id="查准率，查全率-与-F1"><a href="#查准率，查全率-与-F1" class="headerlink" title="查准率，查全率 与$F1$"></a>查准率，查全率 与$F1$</h3><p>二分类混淆矩阵</p>
+<table>
+<thead>
+<tr>
+<th>真实情况</th>
+<th>预测结果</th>
+<th>预测结果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td>正例</td>
+<td>反例</td>
+</tr>
+<tr>
+<td>正例</td>
+<td>TP(真正例)</td>
+<td>FN(假反例)</td>
+</tr>
+<tr>
+<td>反例</td>
+<td>FP(假正例)</td>
+<td>TN(真反例)</td>
+</tr>
+</tbody></table>
+<p>查准率<br>$$<br>P= \frac{TP}{TP+FP}<br>$$<br>查全率<br>$$<br>R=\frac{TP}{FN+TP}<br>$$<br>查准率和查全率一般是两个相互矛盾的变量一个高时另一个往往偏低，只有某些简单的任务时才可能让两个数值都高</p>
+<p>P-R曲线，以查准率为纵坐标，查全率为横坐标得到的坐标图，当一个曲线把另一个曲线完全包裹住时候我们可以说前一个模型的性能要高于后一个模型，如果又交叉则很难断定谁好谁坏</p>
+<p>当查准率等于查全率的时候，这个点便是**平衡点(Break-Even Point,BEP)**，也可基于平狠点来对比两个模型的优劣，但是更常用的还是F1 度量<br>$$<br>F1 =\frac{2\cdot P \cdot R}{P+R} = \frac{2 \cdot TP}{样例总数 + TP-TN}<br>$$<br>F1度量是基于查准率和查全率的调和平均定义的 $\frac{1}{F1}=\frac{1}{2}(\frac{1}{P}+\frac{1}{R})$</p>
+<p>不同的任务中注重查准，查全率的方向不同，对他们比值要求不同，这时候就出来了F1的一般形式，$F_\beta$</p>
+<p>定义为<br>$$<br>F_\beta = \frac{(1+\beta^2)\cdot P\cdot R}{(\beta^2\cdot P)+R}<br>$$<br>$F_\beta$是加权调和平均值<br>$$<br>\frac{1}{F_\beta} = \frac{1}{1+\beta^2}(\frac{1}{P}+\frac{\beta^2}{R})<br>$$<br>当$\beta$等于1时退化为$F1$标准， 大于1 时对查全率有更大影响；小雨1时候对查准率有更大影响</p>
+<p>一种做法是对多组数据的查准率查全率继续取平均值得到 <strong>宏查准率(macro-P) 宏查全率(macro-R) <strong>以及</strong>宏F1(macro-F1)</strong></p>
+<p>另一种做法是把混淆矩阵的各个元素线进行平均然后计算 可得到<strong>微查准率(micro -P)微查全(micro-R)率</strong>和<strong>微F1(micro-F1)</strong></p>
+<h3 id="ROC和AUC"><a href="#ROC和AUC" class="headerlink" title="ROC和AUC"></a>ROC和AUC</h3><p>很多的机器学习测试一组样本以后会得到一个实值或者是预测值，然后和某一个**阈值(threshold)**作比较，如果大于便是正类 ，如果小雨便是反类</p>
+
       
     </div>
     
@@ -446,8 +479,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2021/09/11/next%E6%A1%86%E6%9E%B6%E5%8D%9A%E5%AE%A2%E4%B8%AD%E4%BD%BF%E7%94%A8%E5%90%84%E4%B8%AA%E5%8A%9F%E8%83%BD%E7%9A%84%E4%BD%BF%E7%94%A8/" rel="next" title="hexo框架next主题博客中使用各个功能的使用">
-                <i class="fa fa-chevron-left"></i> hexo框架next主题博客中使用各个功能的使用
+              <a href="/2021/09/12/typora%E7%9A%84%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/" rel="next" title="typora的使用笔记">
+                <i class="fa fa-chevron-left"></i> typora的使用笔记
               </a>
             
           </div>
@@ -455,6 +488,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/09/13/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95-%E6%9D%8E%E8%88%AA/" rel="prev" title="统计学习方法-李航">
+                统计学习方法-李航 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -539,7 +576,7 @@
                 <!--<a href="/archives/%7C%7C%20archive"> -->
 	<a href="/archives/"
               
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -550,7 +587,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
@@ -561,7 +598,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -604,7 +641,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E7%AB%A0-%E7%BB%AA%E8%AE%BA"><span class="nav-number">1.</span> <span class="nav-text">第一章 绪论</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%9C%AF%E8%AF%AD"><span class="nav-number">1.1.</span> <span class="nav-text">基本术语</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%81%87%E8%AE%BE%E7%A9%BA%E9%97%B4"><span class="nav-number">1.2.</span> <span class="nav-text">假设空间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BD%92%E7%BA%B3%E5%81%8F%E5%A5%BD"><span class="nav-number">1.3.</span> <span class="nav-text">归纳偏好</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E6%A8%A1%E5%9E%8B%E8%AF%84%E4%BC%B0%E4%B8%8E%E9%80%89%E6%8B%A9"><span class="nav-number">2.</span> <span class="nav-text">第二章 模型评估与选择</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%8F%E9%AA%8C%E8%AF%AF%E5%B7%AE%E4%B8%8E%E8%BF%87%E6%8B%9F%E5%90%88"><span class="nav-number">2.1.</span> <span class="nav-text">经验误差与过拟合</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%84%E4%BC%B0%E6%96%B9%E6%B3%95"><span class="nav-number">2.2.</span> <span class="nav-text">评估方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%95%99%E5%87%BA%E6%B3%95"><span class="nav-number">2.2.1.</span> <span class="nav-text">留出法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%A4%E5%8F%89%E9%AA%8C%E8%AF%81%E6%B3%95"><span class="nav-number">2.2.2.</span> <span class="nav-text">交叉验证法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E5%8A%A9%E6%B3%95"><span class="nav-number">2.2.3.</span> <span class="nav-text">自助法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B0%83%E5%8F%82%E4%B8%8E%E6%9C%80%E7%BB%88%E6%A8%A1%E5%9E%8B"><span class="nav-number">2.2.4.</span> <span class="nav-text">调参与最终模型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%A7%E8%83%BD%E5%BA%A6%E9%87%8F"><span class="nav-number">2.3.</span> <span class="nav-text">性能度量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%94%99%E8%AF%AF%E7%8E%87%E4%B8%8E%E7%B2%BE%E5%BA%A6"><span class="nav-number">2.3.1.</span> <span class="nav-text">错误率与精度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E5%87%86%E7%8E%87%EF%BC%8C%E6%9F%A5%E5%85%A8%E7%8E%87-%E4%B8%8E-F1"><span class="nav-number">2.3.2.</span> <span class="nav-text">查准率，查全率 与$F1$</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E7%AB%A0-%E7%BB%AA%E8%AE%BA"><span class="nav-number">1.</span> <span class="nav-text">第一章 绪论</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%9C%AF%E8%AF%AD"><span class="nav-number">1.1.</span> <span class="nav-text">基本术语</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%81%87%E8%AE%BE%E7%A9%BA%E9%97%B4"><span class="nav-number">1.2.</span> <span class="nav-text">假设空间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BD%92%E7%BA%B3%E5%81%8F%E5%A5%BD"><span class="nav-number">1.3.</span> <span class="nav-text">归纳偏好</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E6%A8%A1%E5%9E%8B%E8%AF%84%E4%BC%B0%E4%B8%8E%E9%80%89%E6%8B%A9"><span class="nav-number">2.</span> <span class="nav-text">第二章 模型评估与选择</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%8F%E9%AA%8C%E8%AF%AF%E5%B7%AE%E4%B8%8E%E8%BF%87%E6%8B%9F%E5%90%88"><span class="nav-number">2.1.</span> <span class="nav-text">经验误差与过拟合</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%84%E4%BC%B0%E6%96%B9%E6%B3%95"><span class="nav-number">2.2.</span> <span class="nav-text">评估方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%95%99%E5%87%BA%E6%B3%95"><span class="nav-number">2.2.1.</span> <span class="nav-text">留出法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%A4%E5%8F%89%E9%AA%8C%E8%AF%81%E6%B3%95"><span class="nav-number">2.2.2.</span> <span class="nav-text">交叉验证法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E5%8A%A9%E6%B3%95"><span class="nav-number">2.2.3.</span> <span class="nav-text">自助法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B0%83%E5%8F%82%E4%B8%8E%E6%9C%80%E7%BB%88%E6%A8%A1%E5%9E%8B"><span class="nav-number">2.2.4.</span> <span class="nav-text">调参与最终模型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%A7%E8%83%BD%E5%BA%A6%E9%87%8F"><span class="nav-number">2.3.</span> <span class="nav-text">性能度量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%94%99%E8%AF%AF%E7%8E%87%E4%B8%8E%E7%B2%BE%E5%BA%A6"><span class="nav-number">2.3.1.</span> <span class="nav-text">错误率与精度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E5%87%86%E7%8E%87%EF%BC%8C%E6%9F%A5%E5%85%A8%E7%8E%87-%E4%B8%8E-F1"><span class="nav-number">2.3.2.</span> <span class="nav-text">查准率，查全率 与$F1$</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ROC%E5%92%8CAUC"><span class="nav-number">2.3.3.</span> <span class="nav-text">ROC和AUC</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
