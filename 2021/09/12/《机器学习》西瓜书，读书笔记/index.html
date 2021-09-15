@@ -397,8 +397,9 @@
 <p>版本空间(version space):一个与训练集一致的 假设集合     保留正例结果去除反例结果得到版本空间</p>
 <h2 id="归纳偏好"><a href="#归纳偏好" class="headerlink" title="归纳偏好"></a>归纳偏好</h2><p>通过学习得到的模型对应了假设空间中的一个假设。当很多模型对于一个特殊示例的判断不一致时 我们需要设置一个归纳偏好，且任何一个有效的机器学习必须有偏好。归纳偏好是对庞大的假设空间中的假设进行选着的启发式 或 价值观。常用 奥卡姆剃刀原则。</p>
 <p>算法的归纳偏好是否和问题本身匹配，大多数时候决定了算法是否能取得好的性能。根据问题本身的情况来设定归纳偏好</p>
-<h1 id="第二章-模型评估与选择"><a href="#第二章-模型评估与选择" class="headerlink" title="第二章 模型评估与选择"></a>第二章 模型评估与选择</h1><h2 id="经验误差与过拟合"><a href="#经验误差与过拟合" class="headerlink" title="经验误差与过拟合"></a>经验误差与过拟合</h2><p>$$<br>错误率 = \frac{分类错误的样本}{样本总数}<br>$$</p>
-<p>$$<br>精度 = 1 -错误率<br>$$<br>误差(error):机器学习的实际预测输出与样本的真实输出的差异，在训练集上的误差称为经验误差(empirical error)或训练误差(training error)，在新样本上的误差称为泛化误差。实际能做的是让经验误差小一点</p>
+<h1 id="第二章-模型评估与选择"><a href="#第二章-模型评估与选择" class="headerlink" title="第二章 模型评估与选择"></a>第二章 模型评估与选择</h1><h2 id="经验误差与过拟合"><a href="#经验误差与过拟合" class="headerlink" title="经验误差与过拟合"></a>经验误差与过拟合</h2><script type="math/tex; mode=display">
+错误率 = \frac{分类错误的样本}{样本总数}</script><script type="math/tex; mode=display">
+精度 = 1 -错误率</script><p>误差(error):机器学习的实际预测输出与样本的真实输出的差异，在训练集上的误差称为经验误差(empirical error)或训练误差(training error)，在新样本上的误差称为泛化误差。实际能做的是让经验误差小一点</p>
 <p>人们希望的是，人们在遇到新样本的时候模型的表现会好一点</p>
 <p>过拟合(overfitting) :学习器也就是模型把训练样本学习的太好了，导致泛化性能下降，模型把训练样本的某些本质当成了一般特质。一般由于学习能力太过强大，无法彻底避免只能缓和</p>
 <p>欠拟合(underfitting):和过拟合恰恰相反，对样本的本质没有学习到位</p>
@@ -407,14 +408,18 @@
 <p>在测试集和训练集的比例分派上，没有完美的解决方案，通常是将大约2/3到4/5的样本用来做训练集余下的用来做测试集。</p>
 <h3 id="交叉验证法"><a href="#交叉验证法" class="headerlink" title="交叉验证法"></a>交叉验证法</h3><p>将数据集D通过分层抽样划分为K个大小相似的子集$D_K$将k-1个子集作为训练集，余下的一个集作为测试集，接着循环使用之前的K-1个训练集换做测试集，求出每一次的测试结果最后取均值。也称k折交叉验证</p>
 <p>通常人们会进行多次随机的k折验证法取平均值，常见的是10次10折交叉验证。其中留1法是特列，即只留一个作为测试集，相对更科学但是复杂度很高，且适用于”没有免费的午餐“。</p>
-<h3 id="自助法"><a href="#自助法" class="headerlink" title="自助法"></a>自助法</h3><p>在数据量较少的请情况下使用，将数据集D采样得到D’：每次随机从数据集D中随机挑一个样本放在D’中然后放回D数据集，使下一次采样的时候仍有可能被采集到，重复m此之后便得到了包含m个样本的数据集，简单估算样本在m此采样中始终不被采集到的概率是$(1 - \frac{1}{m})^m$ ,取极限得到<br>$$<br>\varliminf_{m\to\infty}(1 - \frac{1}{m})^m = \frac{1}{e} \approx0.368<br>$$<br>其中%36.8的数据都没有出现在D‘中于是D’作为训练集</p>
+<h3 id="自助法"><a href="#自助法" class="headerlink" title="自助法"></a>自助法</h3><p>在数据量较少的请情况下使用，将数据集D采样得到D’：每次随机从数据集D中随机挑一个样本放在D’中然后放回D数据集，使下一次采样的时候仍有可能被采集到，重复m此之后便得到了包含m个样本的数据集，简单估算样本在m此采样中始终不被采集到的概率是$(1 - \frac{1}{m})^m$ ,取极限得到</p>
+<script type="math/tex; mode=display">
+\varliminf_{m\to\infty}(1 - \frac{1}{m})^m = \frac{1}{e} \approx0.368</script><p>其中%36.8的数据都没有出现在D‘中于是D’作为训练集</p>
 <p>D\D‘作为训练集 这样训练规模对于学习器的训练影响较小</p>
 <h3 id="调参与最终模型"><a href="#调参与最终模型" class="headerlink" title="调参与最终模型"></a>调参与最终模型</h3><p>模型参数对最终的结果影响十分大。在研究不同的泛化性能时我们使用测试集上的判别效果来估计模型在实际生活中的泛化性，把训练数据分为训练集和验证集，基于验证即来进行学习器选着和调参。</p>
 <h2 id="性能度量"><a href="#性能度量" class="headerlink" title="性能度量"></a>性能度量</h2><p>性能度量(performance measure).性能度量是衡量模型泛化能力的标准，反应了任务的需求。什么样的模型是好的不取决于算法和数据还有任务需求</p>
 <p>回归任务常用 均方误差 作为性能度量</p>
-<p>给定样例集 $D = { {(x_1,y_1),(x_2,y_2),…,(x_m,y_m)}}$ 其中 $ y_i$ 是$ x_i$ 的真实标记<br>$$<br>E(f;D) = \frac{1}{m}\sum_{i=1}^m(f(x_i)-y_i)^2<br>$$</p>
-<h3 id="错误率与精度"><a href="#错误率与精度" class="headerlink" title="错误率与精度"></a>错误率与精度</h3><p>这是常用的两个性能度量，即适用于二分类任务，也适用于多分类任务。对于样例集$D$ 分类错误率和精度的定义为公式（1）（2）</p>
+<p>给定样例集 $D = { {(x_1,y_1),(x_2,y_2),…,(x_m,y_m)}}$ 其中 $ y_i$ 是$ x_i$ 的真实标记</p>
+<script type="math/tex; mode=display">
+E(f;D) = \frac{1}{m}\sum_{i=1}^m(f(x_i)-y_i)^2</script><h3 id="错误率与精度"><a href="#错误率与精度" class="headerlink" title="错误率与精度"></a>错误率与精度</h3><p>这是常用的两个性能度量，即适用于二分类任务，也适用于多分类任务。对于样例集$D$ 分类错误率和精度的定义为公式（1）（2）</p>
 <h3 id="查准率，查全率-与-F1"><a href="#查准率，查全率-与-F1" class="headerlink" title="查准率，查全率 与$F1$"></a>查准率，查全率 与$F1$</h3><p>二分类混淆矩阵</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -423,7 +428,8 @@
 <th>预测结果</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td></td>
 <td>正例</td>
 <td>反例</td>
@@ -438,15 +444,27 @@
 <td>FP(假正例)</td>
 <td>TN(真反例)</td>
 </tr>
-</tbody></table>
-<p>查准率<br>$$<br>P= \frac{TP}{TP+FP}<br>$$<br>查全率<br>$$<br>R=\frac{TP}{FN+TP}<br>$$<br>查准率和查全率一般是两个相互矛盾的变量一个高时另一个往往偏低，只有某些简单的任务时才可能让两个数值都高</p>
+</tbody>
+</table>
+</div>
+<p>查准率</p>
+<script type="math/tex; mode=display">
+P= \frac{TP}{TP+FP}</script><p>查全率</p>
+<script type="math/tex; mode=display">
+R=\frac{TP}{FN+TP}</script><p>查准率和查全率一般是两个相互矛盾的变量一个高时另一个往往偏低，只有某些简单的任务时才可能让两个数值都高</p>
 <p>P-R曲线，以查准率为纵坐标，查全率为横坐标得到的坐标图，当一个曲线把另一个曲线完全包裹住时候我们可以说前一个模型的性能要高于后一个模型，如果又交叉则很难断定谁好谁坏</p>
-<p>当查准率等于查全率的时候，这个点便是**平衡点(Break-Even Point,BEP)**，也可基于平狠点来对比两个模型的优劣，但是更常用的还是F1 度量<br>$$<br>F1 =\frac{2\cdot P \cdot R}{P+R} = \frac{2 \cdot TP}{样例总数 + TP-TN}<br>$$<br>F1度量是基于查准率和查全率的调和平均定义的 $\frac{1}{F1}=\frac{1}{2}(\frac{1}{P}+\frac{1}{R})$</p>
+<p>当查准率等于查全率的时候，这个点便是<strong>平衡点(Break-Even Point,BEP)</strong>，也可基于平狠点来对比两个模型的优劣，但是更常用的还是F1 度量</p>
+<script type="math/tex; mode=display">
+F1 =\frac{2\cdot P \cdot R}{P+R} = \frac{2 \cdot TP}{样例总数 + TP-TN}</script><p>F1度量是基于查准率和查全率的调和平均定义的 $\frac{1}{F1}=\frac{1}{2}(\frac{1}{P}+\frac{1}{R})$</p>
 <p>不同的任务中注重查准，查全率的方向不同，对他们比值要求不同，这时候就出来了F1的一般形式，$F_\beta$</p>
-<p>定义为<br>$$<br>F_\beta = \frac{(1+\beta^2)\cdot P\cdot R}{(\beta^2\cdot P)+R}<br>$$<br>$F_\beta$是加权调和平均值<br>$$<br>\frac{1}{F_\beta} = \frac{1}{1+\beta^2}(\frac{1}{P}+\frac{\beta^2}{R})<br>$$<br>当$\beta$等于1时退化为$F1$标准， 大于1 时对查全率有更大影响；小雨1时候对查准率有更大影响</p>
-<p>一种做法是对多组数据的查准率查全率继续取平均值得到 <strong>宏查准率(macro-P) 宏查全率(macro-R) <strong>以及</strong>宏F1(macro-F1)</strong></p>
+<p>定义为</p>
+<script type="math/tex; mode=display">
+F_\beta = \frac{(1+\beta^2)\cdot P\cdot R}{(\beta^2\cdot P)+R}</script><p>$F_\beta$是加权调和平均值</p>
+<script type="math/tex; mode=display">
+\frac{1}{F_\beta} = \frac{1}{1+\beta^2}(\frac{1}{P}+\frac{\beta^2}{R})</script><p>当$\beta$等于1时退化为$F1$标准， 大于1 时对查全率有更大影响；小雨1时候对查准率有更大影响</p>
+<p>一种做法是对多组数据的查准率查全率继续取平均值得到 <strong>宏查准率(macro-P) 宏查全率(macro-R) </strong>以及<strong>宏F1(macro-F1)</strong></p>
 <p>另一种做法是把混淆矩阵的各个元素线进行平均然后计算 可得到<strong>微查准率(micro -P)微查全(micro-R)率</strong>和<strong>微F1(micro-F1)</strong></p>
-<h3 id="ROC和AUC"><a href="#ROC和AUC" class="headerlink" title="ROC和AUC"></a>ROC和AUC</h3><p>很多的机器学习测试一组样本以后会得到一个实值或者是预测值，然后和某一个**阈值(threshold)**作比较，如果大于便是正类 ，如果小雨便是反类</p>
+<h3 id="ROC和AUC"><a href="#ROC和AUC" class="headerlink" title="ROC和AUC"></a>ROC和AUC</h3><p>很多的机器学习测试一组样本以后会得到一个实值或者是预测值，然后和某一个<strong>阈值(threshold)</strong>作比较，如果大于便是正类 ，如果小雨便是反类</p>
 
       
     </div>

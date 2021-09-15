@@ -398,34 +398,80 @@
 </ol>
 <p>2.无监督学习::从无标注数据中学习预测模型的机器学习问题 本质是学习数据中的统计规律或潜在解构</p>
 <p><strong>待续。。。</strong></p>
-<h2 id="第二章-感知机"><a href="#第二章-感知机" class="headerlink" title="第二章 感知机"></a>第二章 感知机</h2><h3 id="2-1-感知机模型"><a href="#2-1-感知机模型" class="headerlink" title="2.1 感知机模型"></a>2.1 感知机模型</h3><p>感知的定义 :假设输入空间是 $\chi\subseteq R^n$, 输出空间是$Y ={+1,-1}$ 。输入$x\in\chi$ 表示实例的特征向量，对应于输出空间的点；输出$y\in Y$表示实例的类别。由输入空间到输出空间的以下函数<br>$$<br>f(x)= sign(w\cdot x +b)<br>$$<br>称为感知机。其中，w和b为感知机的模型参数，$w \in R^n$ 叫做权值(weight) 或权值向量(vector) ,$b\in R$叫做偏置(bias)，$w\cdot x$表示w和x的内积。sign是符号函数<br>$$<br>sign(x) =\left{<br>\begin{aligned}<br>+1, x \geq 0\<br>-1, x &lt; 0<br>\end{aligned}<br>\right.<br>`<br>$$<br>感知机是一种线性分类模型,<strong>属于判别模型</strong>。感知机模型的假设空间是定义在输入空间的所有线性分类模型 即函数合集${f|f(x) = w \cdot x +b}$</p>
-<p>感知机的集合解释为：线性方程<br>$$<br>0 = sign(w\cdot x +b)<br>$$<br>对应输入空间的一个超平面S，其中w为法向量，b为超平面的截距。这个超平面把特征空间也就是输入空间分为两个部分，位于连个部分的点被分为正负两类。也称分离超平面</p>
-<h3 id="2-2感知机学习策略"><a href="#2-2感知机学习策略" class="headerlink" title="2.2感知机学习策略"></a>2.2感知机学习策略</h3><h4 id="2-2-1-数据集的线性可分性的定义"><a href="#2-2-1-数据集的线性可分性的定义" class="headerlink" title="2.2.1 数据集的线性可分性的定义"></a>2.2.1 数据集的线性可分性的定义</h4><p>给定一个数据集<br>$$<br>T ={(x_1,y_1),…,(x_n,y_n)}<br>$$<br>其中$x_i\in \chi $ ,$y_i\in Y = {+1,-1},i={1,2,…,N}$，如果存在某个超平面能偶是的数据集的正实例点和负实例点完全正确地划分到超平面的两侧，称之为数据集的线性可分，否则反之。</p>
+<h2 id="第二章-感知机"><a href="#第二章-感知机" class="headerlink" title="第二章 感知机"></a>第二章 感知机</h2><h3 id="2-1-感知机模型"><a href="#2-1-感知机模型" class="headerlink" title="2.1 感知机模型"></a>2.1 感知机模型</h3><p>感知的定义 :假设输入空间是 $\chi\subseteq R^n$, 输出空间是$Y ={+1,-1}$ 。输入$x\in\chi$ 表示实例的特征向量，对应于输出空间的点；输出$y\in Y$表示实例的类别。由输入空间到输出空间的以下函数</p>
+<script type="math/tex; mode=display">
+f(x)= sign(w\cdot x +b)</script><p>称为感知机。其中，w和b为感知机的模型参数，$w \in R^n$ 叫做权值(weight) 或权值向量(vector) ,$b\in R$叫做偏置(bias)，$w\cdot x$表示w和x的内积。sign是符号函数</p>
+<script type="math/tex; mode=display">
+sign(x) =\left\{
+\begin{aligned}
++1, x \geq 0\\
+-1, x < 0
+\end{aligned}
+\right.
+`</script><p>感知机是一种线性分类模型,<strong>属于判别模型</strong>。感知机模型的假设空间是定义在输入空间的所有线性分类模型 即函数合集${f|f(x) = w \cdot x +b}$</p>
+<p>感知机的集合解释为：线性方程</p>
+<script type="math/tex; mode=display">
+0 = sign(w\cdot x +b)</script><p>对应输入空间的一个超平面S，其中w为法向量，b为超平面的截距。这个超平面把特征空间也就是输入空间分为两个部分，位于连个部分的点被分为正负两类。也称分离超平面</p>
+<h3 id="2-2感知机学习策略"><a href="#2-2感知机学习策略" class="headerlink" title="2.2感知机学习策略"></a>2.2感知机学习策略</h3><h4 id="2-2-1-数据集的线性可分性的定义"><a href="#2-2-1-数据集的线性可分性的定义" class="headerlink" title="2.2.1 数据集的线性可分性的定义"></a>2.2.1 数据集的线性可分性的定义</h4><p>给定一个数据集 </p>
+<script type="math/tex; mode=display">
+T =\{(x_1,y_1),...,(x_n,y_n)\}</script><p>其中$x_i\in \chi $ ,$y_i\in Y = {+1,-1},i={1,2,…,N}$，如果存在某个超平面能偶是的数据集的正实例点和负实例点完全正确地划分到超平面的两侧，称之为数据集的线性可分，否则反之。</p>
 <h4 id="2-2-2-感知机学习策略"><a href="#2-2-2-感知机学习策略" class="headerlink" title="2.2.2 感知机学习策略"></a>2.2.2 感知机学习策略</h4><p>假设数据集是线性可分的感知机的目的就是求得一个分离超平面。为了确定w,b的感知机参数，需要指定一个学习策略，即经验（损失）函数并将损失的值最小化</p>
-<p>损失函数的一个选择是无分类点的总数，但是这样不容易优化。于是我们选着另外一种，所有点到超平面的距离：<br>$$<br>\frac{1}{||w||} |w\cdot x_0 +b|<br>$$<br>这里$||w||$ 是w  的$L_2$范数，对于误分类点$(x_i,y_i)$来说<br>$$<br>-y_i (w\cdot x_0 +b)&gt;0<br>$$<br>假设超平面S的误分类点)集为 M ,那么所有误分类点$(x_i,y_i)$的到平面的距离和为：<br>$$<br>-\frac{1}{||w||} \sum <em>{x_i\in M}y_i(w\cdot x_i +b)<br>$$<br>不考虑$\frac{1}{||w||} $便得到了损失函数即：<br>$$<br>L(w,b) = - \sum</em>{x_i/in M}y_i(w\cdot x +b)<br>$$<br>这个损失函数也就是经验函数。</p>
-<h3 id="2-3-感知机学习算法"><a href="#2-3-感知机学习算法" class="headerlink" title="2.3 感知机学习算法"></a>2.3 感知机学习算法</h3><h4 id="2-3-1-感知机学习算法的最原始形式"><a href="#2-3-1-感知机学习算法的最原始形式" class="headerlink" title="2.3.1 感知机学习算法的最原始形式"></a>2.3.1 感知机学习算法的最原始形式</h4><p>感知机学习算法是对损失函数的最小化的优化算法。求参数$w,b$使得损失函数最小。感知机算法是误分类驱动的，具体采用梯度下降算法。<br>$$<br>minL(w,b) = - \sum_{x_i/in M}y_i(w\cdot x +b)<br>$$<br>首先选一个超平面$w_0,b_0$,然后用梯度下降算法不断极小化。</p>
-<p>假设M点集合固定，那么损失函数L(w,b)的梯度由<br>$$<br>\Delta_w L(w,b) = -\sum_{x_i\in M}y_ix_i<br>$$</p>
-<p>$$<br>\Delta_b L(w,b) = -\sum_{x_i\in M}y_i<br>$$</p>
-<p>给出</p>
-<p>随机选你个误分类点对wb进行更新：<br>$$<br>w \leftarrow w+\eta y_ix_i<br>$$</p>
-<p>$$<br>b \leftarrow b + \eta y_i<br>$$</p>
-<p>其中$\eta$是步长(0&lt;,&lt;=1)，在统计学习称为学习率这样迭代可以使损失函数不断变小知道为0；<br>$$<br>输入：训练集T ={(x_1,y_1),…,(x_n,y_n)}，其中x\in\chi ,y_i\in Y = {+1,-1},i={1,2,…,N}\学习率\eta（0&lt;\eta\leq1）<br>\输出：w,b;感知机模型f(x) = sign(w\cdot x +b)\<br>(1)选取初值w_0,b_0\<br>(2)在训练中选取（x_i,y_i)\<br>(3)如果y_i(w\cdot x_i +b) \leq0\w \leftarrow w+\eta y_ix_i\b \leftarrow b + \eta y_i\<br>（4）转至(2)，直到训练中没有误分类的点<br>$$</p>
-<h4 id="2-3-2-算法的收敛性"><a href="#2-3-2-算法的收敛性" class="headerlink" title="2.3.2 算法的收敛性"></a>2.3.2 算法的收敛性</h4><p>为了方便叙述，将偏置b并入权重向量W ，记作$\widehat{w} = (w^T,b)^T$,同样的也将输入向量加以扩充 ，加进常数1记作 $\widehat{x}={(x^T,1)^T}$ 。这样，$\widehat{x} \in R^n+1,\widehat{w} \in R^n+1$。显然，$\widehat{w} \cdot\widehat{x} = w\cdot x +b$。</p>
+<p>损失函数的一个选择是无分类点的总数，但是这样不容易优化。于是我们选着另外一种，所有点到超平面的距离：</p>
+<script type="math/tex; mode=display">
+\frac{1}{||w||} |w\cdot x_0 +b|</script><p>这里$||w||$ 是w  的$L_2$范数，对于误分类点$(x_i,y_i)$来说</p>
+<script type="math/tex; mode=display">
+-y_i (w\cdot x_0 +b)>0</script><p>假设超平面S的误分类点)集为 M ,那么所有误分类点$(x_i,y_i)$的到平面的距离和为：</p>
+<script type="math/tex; mode=display">
+-\frac{1}{||w||} \sum _{x_i\in M}y_i(w\cdot x_i +b)</script><p>不考虑$\frac{1}{||w||} $便得到了损失函数即：</p>
+<script type="math/tex; mode=display">
+L(w,b) = - \sum_{x_i/in M}y_i(w\cdot x +b)</script><p>这个损失函数也就是经验函数。</p>
+<h3 id="2-3-感知机学习算法"><a href="#2-3-感知机学习算法" class="headerlink" title="2.3 感知机学习算法"></a>2.3 感知机学习算法</h3><h4 id="2-3-1-感知机学习算法的最原始形式"><a href="#2-3-1-感知机学习算法的最原始形式" class="headerlink" title="2.3.1 感知机学习算法的最原始形式"></a>2.3.1 感知机学习算法的最原始形式</h4><p>感知机学习算法是对损失函数的最小化的优化算法。求参数$w,b$使得损失函数最小。感知机算法是误分类驱动的，具体采用梯度下降算法。</p>
+<script type="math/tex; mode=display">
+minL(w,b) = - \sum_{x_i/in M}y_i(w\cdot x +b)</script><p>首先选一个超平面$w_0,b_0$,然后用梯度下降算法不断极小化。</p>
+<p>假设M点集合固定，那么损失函数L(w,b)的梯度由</p>
+<script type="math/tex; mode=display">
+\Delta_w L(w,b) = -\sum_{x_i\in M}y_ix_i</script><script type="math/tex; mode=display">
+\Delta_b L(w,b) = -\sum_{x_i\in M}y_i</script><p>给出</p>
+<p>随机选你个误分类点对wb进行更新：</p>
+<script type="math/tex; mode=display">
+w \leftarrow w+\eta y_ix_i</script><script type="math/tex; mode=display">
+b \leftarrow b + \eta y_i</script><p>其中$\eta$是步长(0&lt;,&lt;=1)，在统计学习称为学习率这样迭代可以使损失函数不断变小知道为0；</p>
+<script type="math/tex; mode=display">
+输入：训练集T =\{(x_1,y_1),...,(x_n,y_n)\}，其中x\in\chi ,y_i\in Y = \{+1,-1\},i=\{1,2,...,N\}\\学习率\eta（0<\eta\leq1）
+\\输出：w,b;感知机模型f(x) = sign(w\cdot x +b)\\
+(1)选取初值w_0,b_0\\
+(2)在训练中选取（x_i,y_i)\\
+(3)如果y_i(w\cdot x_i +b) \leq0\\w \leftarrow w+\eta y_ix_i\\b \leftarrow b + \eta y_i\\
+（4）转至(2)，直到训练中没有误分类的点</script><h4 id="2-3-2-算法的收敛性"><a href="#2-3-2-算法的收敛性" class="headerlink" title="2.3.2 算法的收敛性"></a>2.3.2 算法的收敛性</h4><p>为了方便叙述，将偏置b并入权重向量W ，记作$\widehat{w} = (w^T,b)^T$,同样的也将输入向量加以扩充 ，加进常数1记作 $\widehat{x}={(x^T,1)^T}$ 。这样，$\widehat{x} \in R^n+1,\widehat{w} \in R^n+1$。显然，$\widehat{w} \cdot\widehat{x} = w\cdot x +b$。</p>
 <p>得到定理 <strong>Novikoff</strong>:</p>
 <p>$训练集T ={(x_1,y_1),…,(x_n,y_n)}是线性可分的，其中x\in\chi ,y_i\in Y = {+1,-1},i={1,2,…,N}$则</p>
 <ol>
-<li>存在满足条件的$||\widehat{w}<em>{opt}|| = 1$的超平面$\widehat{w}</em>{opt}\cdot \widehat{x}<em>i = w</em>{opt} \cdot x_i+b_{opt} = 0$将训练集完全正确的分开且存在$\gamma$&gt;0 对所有$i$ 有</li>
+<li>存在满足条件的$||\widehat{w}<em>{opt}|| = 1$的超平面$\widehat{w}</em>{opt}\cdot \widehat{x}<em>i = w</em>{opt} \cdot x<em>i+b</em>{opt} = 0$将训练集完全正确的分开且存在$\gamma$&gt;0 对所有$i$ 有</li>
 </ol>
-<p>$$<br>y_i(\widehat{w}<em>{opt}\cdot \widehat{x}<em>i) = y_i(w</em>{opt} \cdot x_i +b</em>{opt})\geq \gamma<br>$$</p>
-<p>   2.令 $R =\max_{1\leq i\leq N} ||\widehat{x}||$ 则感知机算法在训练数据集上的误分类次数k满足不等式：<br>$$<br>k\leq(\frac{R}{\gamma})^2<br>$$<br>证明：略</p>
+<script type="math/tex; mode=display">
+y_i(\widehat{w}_{opt}\cdot \widehat{x}_i) = y_i(w_{opt} \cdot x_i +b_{opt})\geq \gamma</script><p>   2.令 $R =\max_{1\leq i\leq N} ||\widehat{x}||$ 则感知机算法在训练数据集上的误分类次数k满足不等式：</p>
+<script type="math/tex; mode=display">
+k\leq(\frac{R}{\gamma})^2</script><p>证明：略</p>
 <p>即当数据集线性可分时候，感知机算法原始形式迭代是收敛的。其结果依赖于初始选择点位和后续误分类点的顺序。这也是第七章要讲述的线性支持向量机的想法。</p>
 <p>当数据集不收敛是，迭代结果会发生震荡。</p>
 <h4 id="2-3-3-感知机学习算法的对偶形式"><a href="#2-3-3-感知机学习算法的对偶形式" class="headerlink" title="2.3.3 感知机学习算法的对偶形式"></a>2.3.3 感知机学习算法的对偶形式</h4><p>感知机的原始形式和队友形式与第七章中的支持向量机学习算法的原始形式和对偶形式相对应。</p>
-<p>对偶性形式的基本想法是，将w和b表示为实例$x_i$和标记$y_i$的线性组合的形式通过求解其系数而球的wb。不失一般性在,算法（14）中假设$w_0,b_0$=0 。通过<br>$$<br>w \leftarrow w+\eta y_ix_i\b \leftarrow b + \eta y_i\<br>$$<br>逐步修改w,b，设修改n次，则关于$(x_i,y_i)$的增量分别是$\alpha_i y_i x_i$ 和$\alpha_i y_i$ ,这里的$\alpha_i = n_i \eta$，$n_i$是点被误分类的次数，这样而来组后学习到的w,b可以分别表示为</p>
-<p>$$<br>w=\sum^N_{i=1}\alpha_i y_i x_i\<br>b= \sum_{i=1}^N\alpha_iy_i<br>$$<br> 当$\eta =1 $时，表示第i个实例点由于误分类而进行更新的次数。实例点阅读哦更新的次数越多，距离风力超平面越近，越难正确分类，这样的实例对学习结果影响最大。</p>
-<p><strong>算法2.2</strong>：感知机学习算法的对偶形式<br>$$<br>输入：训练集T ={(x_1,y_1),…,(x_n,y_n)}，其中x\in\chi ,y_i\in Y = {+1,-1},i={1,2,…,N}\学习率\eta（0&lt;\eta\leq1）<br>\输出：w,b;感知机模型f(x) = sign(\sum_{j=1}^N\alpha_jy_jx_j\cdot x+b),其中\alpha = (\alpha_1,\alpha_2,…,\alpha_N)^T\</p>
-<p>\(1)\alpha\leftarrow0,b\leftarrow 0;\<br>(2)在训练集中选取数据(x_i,y_i)\<br>(3)如果y_i(\sum_{j=1}^N \alpha_jy_jx_j\cdot x_i +b)\leq 0\<br>(4)转至（2）直到没有误分类数据<br>$$<br>对偶形式中训练实例仅仅以内积的形式出现。为了方便，可以预先将训练集中实例间的内积算出来并以矩阵的形式存储，这就是所谓的<strong>Gram</strong>矩阵<br>$$<br>G= [x_i \cdot x_j]_{N\times N}<br>$$</p>
+<p>对偶性形式的基本想法是，将w和b表示为实例$x_i$和标记$y_i$的线性组合的形式通过求解其系数而球的wb。不失一般性在,算法（14）中假设$w_0,b_0$=0 。通过</p>
+<script type="math/tex; mode=display">
+w \leftarrow w+\eta y_ix_i\\b \leftarrow b + \eta y_i\\</script><p>逐步修改w,b，设修改n次，则关于$(x_i,y_i)$的增量分别是$\alpha_i y_i x_i$ 和$\alpha_i y_i$ ,这里的$\alpha_i = n_i \eta$，$n_i$是点被误分类的次数，这样而来组后学习到的w,b可以分别表示为</p>
+<script type="math/tex; mode=display">
+w=\sum^N_{i=1}\alpha_i y_i x_i\\
+b= \sum_{i=1}^N\alpha_iy_i</script><p> 当$\eta =1 $时，表示第i个实例点由于误分类而进行更新的次数。实例点阅读哦更新的次数越多，距离风力超平面越近，越难正确分类，这样的实例对学习结果影响最大。</p>
+<p><strong>算法2.2</strong>：感知机学习算法的对偶形式</p>
+<script type="math/tex; mode=display">
+输入：训练集T =\{(x_1,y_1),...,(x_n,y_n)\}，其中x\in\chi ,y_i\in Y = \{+1,-1\},i=\{1,2,...,N\}\\学习率\eta（0<\eta\leq1）
+\\输出：w,b;感知机模型f(x) = sign(\sum_{j=1}^N\alpha_jy_jx_j\cdot x+b),其中\alpha = (\alpha_1,\alpha_2,...,\alpha_N)^T\\
 
+\\(1)\alpha\leftarrow0,b\leftarrow 0;\\
+(2)在训练集中选取数据(x_i,y_i)\\
+(3)如果y_i(\sum_{j=1}^N \alpha_jy_jx_j\cdot x_i +b)\leq 0\\
+(4)转至（2）直到没有误分类数据</script><p>对偶形式中训练实例仅仅以内积的形式出现。为了方便，可以预先将训练集中实例间的内积算出来并以矩阵的形式存储，这就是所谓的<strong>Gram</strong>矩阵</p>
+<script type="math/tex; mode=display">
+G= [x_i \cdot x_j]_{N\times N}</script>
       
     </div>
     
